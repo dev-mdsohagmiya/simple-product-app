@@ -40,7 +40,7 @@ export default function CreatePage() {
   };
   return (
     <Container maxW={container.sm}>
-      <VStack spacing={8}>
+      <VStack marginY={10}>
         <Heading as={"h1"} size={"2xl"} textAlign={"center"} mb={8}>
           Create New Product
         </Heading>

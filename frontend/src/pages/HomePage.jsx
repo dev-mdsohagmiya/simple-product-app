@@ -1,4 +1,5 @@
 import ProductCard from "@/components/ProductCard";
+import { Toaster } from "@/components/ui/toaster";
 import container from "@/constents/container";
 import { useProductStore } from "@/store/product";
 import { Container, VStack, Text, SimpleGrid } from "@chakra-ui/react";
@@ -25,7 +26,7 @@ export default function HomePage() {
           Current Products 🚀
         </Text>
       </VStack>
-      {products.length <= 0 ? (
+      {products.length === 0 ? (
         <Text
           fontSize={"lg"}
           textAlign={"center"}
@@ -59,6 +60,8 @@ export default function HomePage() {
           ))}
         </SimpleGrid>
       )}
+
+      <Toaster />
     </Container>
   );
 }
