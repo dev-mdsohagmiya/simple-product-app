@@ -25,6 +25,7 @@ export default function ProductCard(product) {
   const textColor = useColorModeValue("gray.600", "gray.200");
   const bg = useColorModeValue("white", "gray.800");
   const { deleteProducts, updateProduct } = useProductStore();
+  const [open, setOpen] = useState(false);
   const handleDeleteProduct = async (pid) => {
     const { success, message } = await deleteProducts(pid);
 
@@ -47,9 +48,26 @@ export default function ProductCard(product) {
   const [newProduct, setNewProduct] = useState(product.product);
 
   const handleUpdateProduct = async (pid, newProduct) => {
+    console.log("new product", newProduct);
     const updatedProduct = newProduct;
-    await updateProduct(pid, updatedProduct);
-    console.log(updateProduct);
+    const { success, message } = await updateProduct(pid, updatedProduct);
+
+    console.log("success", success, message);
+    if (!success) {
+      toaster.create({
+        title: "Error",
+        description: message,
+        type: "error",
+      });
+    } else {
+      toaster.create({
+        title: "Success",
+        description: message,
+        type: "success",
+      });
+    }
+
+    setOpen(false);
   };
   return (
     <>
@@ -79,7 +97,12 @@ export default function ProductCard(product) {
         </Box>
 
         <HStack m={2}>
-          <Dialog.Root placement={"center"} motionPreset="slide-in-bottom">
+          <Dialog.Root
+            open={open}
+            onOpenChange={(e) => setOpen(e.open)}
+            placement={"center"}
+            motionPreset="slide-in-bottom"
+          >
             <Dialog.Trigger asChild>
               <Button bg={"teal"}>
                 <Text fontSize={20} color={"black"}>
