@@ -39,7 +39,7 @@ export default function CreatePage() {
     setNewProduct({ name: "", price: "", image: "" });
   };
   return (
-    <Container maxW={container.sm}>
+    <Container maxW={600}>
       <VStack marginY={10}>
         <Heading as={"h1"} size={"2xl"} textAlign={"center"} mb={8}>
           Create New Product
