@@ -12,7 +12,6 @@ export default function HomePage() {
     fetchProducts();
   }, [fetchProducts]);
 
-  console.log(products);
   return (
     <Container maxW={container.xl} py={12}>
       <VStack paddingY={2}>
